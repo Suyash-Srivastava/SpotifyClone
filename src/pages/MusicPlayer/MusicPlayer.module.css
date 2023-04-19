@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 2rem;
+}
+.inner_container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.empty_header{
+    height: 5rem;
+}
+.track_title{
+font-size: 1.5rem;
+font-weight: bolder;
+}
+.artist{
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color:var(--text_secondary_color)
+}
+.cover_photo{
+height: 25rem;
+width: 25rem;
+}
+.cover_photo>img{
+    width: 100%;
+    height: 100%;
+}
+.audio_controller{
+width: 100%;
+height: 5rem;
+}
+.audio_controller>audio{
+    width: 100%;
+    height: 100%;
+}
+

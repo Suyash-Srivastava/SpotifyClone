@@ -1,3 +1,36 @@
+*{
+  box-sizing: border-box; 
+  /* font-family:'Basier Circle'; */
+ }
+ :root {
+  --bg_primary:#000000;
+  --bg_secondary:rgba(255, 255, 255, 0.08);;
+  --text_primary_color:#FFFFFF;
+  --text_secondary_color:grey;
+  --text_hover_color:white;
+  --song_hover_bg:rgba(255, 255, 255, 0.08);
+ }
+ input{
+  border: none;
+  outline: none;
+  cursor: text;
+ }
+ input:focus{
+  border: none;
+  outline: none;
+  cursor: text;
+ }
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: var(--song_hover_bg); /* or add it to the track */
+  border: 1px solid  var(--song_hover_bg);
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--bg_secondary);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
