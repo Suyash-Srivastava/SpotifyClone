@@ -23,6 +23,6 @@
   height: 100%;
   position: absolute;
   z-index: -2;
-  filter: blur(25px) brightness(0.3);
+  filter: blur(20px) brightness(0.3);
 }
 

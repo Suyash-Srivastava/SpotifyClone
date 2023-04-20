@@ -5,15 +5,15 @@ import MusicPlayer from "./pages/MusicPlayer/MusicPlayer";
 import TrackList from "./pages/TrackList/TrackList";
 import { useEffect } from "react";
 
-import defaultCover from './assets/images/png/deafultBackground.jpg'
+import defaultCover from "./assets/images/png/deafultBackground.jpg";
 
 function App() {
   const [optionSelected, setOptionSelected] = useState(1);
   const [currentMenuOption, setCurrentMenuOption] = useState(undefined);
   const [currentTrack, setCurrenTrack] = useState(0);
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState("");
   const [songList, setSongList] = useState(undefined);
-  const [songPlaying, setSongPlaying] = useState(null)
+  const [songPlaying, setSongPlaying] = useState(null);
 
   useEffect(() => {
     getMenuOptions();
@@ -22,15 +22,14 @@ function App() {
 
   useEffect(() => {
     getPlaylistSongs();
-  }, [optionSelected])
-
+  }, [optionSelected]);
 
   useEffect(() => {
-    if(searchTerm.length>0)
-    getPlaylistSongs();
-  }, [searchTerm.length])
-  
+    let deboncedSearch;
 
+    if (deboncedSearch) clearTimeout(deboncedSearch);
+    else deboncedSearch = setTimeout(getPlaylistSongs, 500);
+  }, [searchTerm.length]);
 
   async function getMenuOptions() {
     let playListData = await fetch("https://api.ss.dev/resource/api", {
@@ -60,7 +59,8 @@ function App() {
       },
       body: JSON.stringify({
         query: `{
-          getSongs(playlistId: ${optionSelected}) {
+          
+          getSongs(playlistId: ${optionSelected}, search:"${searchTerm}") {
             _id
             artist
             duration
@@ -79,7 +79,11 @@ function App() {
 
   return (
     <div className="App">
-        <img src={songPlaying?(songPlaying?.photo):defaultCover} className='dynamicBackDrop' alt="backdrop"></img>
+      <img
+        src={songPlaying ? songPlaying?.photo : defaultCover}
+        className="dynamicBackDrop"
+        alt="backdrop"
+      ></img>
       <div className="maincontainer">
         <Menu
           currentMenuOption={currentMenuOption}
@@ -98,7 +102,12 @@ function App() {
           songPlaying={songPlaying}
           setSongPlaying={setSongPlaying}
         />
-        <MusicPlayer currentTrack={currentTrack} songPlaying={songPlaying} setSongPlaying={setSongPlaying} songList={songList}/>
+        <MusicPlayer
+          currentTrack={currentTrack}
+          songPlaying={songPlaying}
+          setSongPlaying={setSongPlaying}
+          songList={songList}
+        />
       </div>
     </div>
   );

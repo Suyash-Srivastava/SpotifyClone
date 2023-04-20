@@ -17,6 +17,13 @@ const MusicPlayer = (props) => {
 
   const audio_player = useRef(null);
 
+
+  useEffect(() => {
+    setisSongPlaying(true)
+  }, [songPlaying?._id])
+  
+
+
   async function playPauseBtn() {
     if (audio_player.current?.paused) {
       await audio_player.current.play();
