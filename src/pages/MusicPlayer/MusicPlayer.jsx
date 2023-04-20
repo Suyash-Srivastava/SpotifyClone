@@ -11,7 +11,7 @@ import audio_pause from "../../assets/images/svg/pause_icon.svg";
 import volume_btn from "../../assets/images/svg/volume_btn.svg";
 
 const MusicPlayer = (props) => {
-  const { songPlaying ,setSongPlaying, songList} = props;
+  const { songPlaying, setSongPlaying, songList } = props;
 
   const [isSongPlaying, setisSongPlaying] = useState(true);
 
@@ -27,25 +27,26 @@ const MusicPlayer = (props) => {
     }
   }
 
-  async function nextOrPrevSong(command){
-    let currentSongIndex=undefined;
-    songList.forEach((song,index)=>{
-      if(song._id===songPlaying._id){
-        currentSongIndex=index  
+  async function nextOrPrevSong(command) {
+    let currentSongIndex = undefined;
+    songList.forEach((song, index) => {
+      if (song._id === songPlaying._id) {
+        currentSongIndex = index;
       }
-      return
-    })
-    if(currentSongIndex===undefined || (currentSongIndex-1<0 && command===0) || (currentSongIndex+1>=songList.length && command===1)){
-      setSongPlaying(songList[0])
-    }
-    else if(command===0){
-      setSongPlaying(songList[currentSongIndex-1])
-    }
-    else if(command===1){
-      setSongPlaying(songList[currentSongIndex+1])
+      return;
+    });
+    if (
+      currentSongIndex === undefined ||
+      (currentSongIndex - 1 < 0 && command === 0) ||
+      (currentSongIndex + 1 >= songList.length && command === 1)
+    ) {
+      setSongPlaying(songList[0]);
+    } else if (command === 0) {
+      setSongPlaying(songList[currentSongIndex - 1]);
+    } else if (command === 1) {
+      setSongPlaying(songList[currentSongIndex + 1]);
     }
   }
-
 
   if (songPlaying === null) {
     return <div className={styles.container}>Please Select a Song ...</div>;
@@ -67,13 +68,21 @@ const MusicPlayer = (props) => {
             <img src={audio_menu_icon} alt="audio menu" />
           </div>
           <div className={styles.audio_controller_actions}>
-            <img src={audio_prev} alt="Previous" onClick={()=>nextOrPrevSong(0)}/>
             <img
-              src={isSongPlaying === false ? audio_play : audio_pause}
-              alt={isSongPlaying === false ? "Play" : "Pause"}
+              src={audio_prev}
+              alt="Previous"
+              onClick={() => nextOrPrevSong(0)}
+            />
+            <img
+              src={isSongPlaying ? audio_pause : audio_play}
+              alt={isSongPlaying ? "Pause" : "Play"}
               onClick={playPauseBtn}
             />
-            <img src={audio_next} alt="Next" onClick={()=>nextOrPrevSong(1)}/>
+            <img
+              src={audio_next}
+              alt="Next"
+              onClick={() => nextOrPrevSong(1)}
+            />
           </div>
           <div className={styles.audio_controller_volume}>
             <img src={volume_btn} alt="volume menu" />
