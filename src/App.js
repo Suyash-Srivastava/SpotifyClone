@@ -5,6 +5,8 @@ import MusicPlayer from "./pages/MusicPlayer/MusicPlayer";
 import TrackList from "./pages/TrackList/TrackList";
 import { useEffect } from "react";
 
+import defaultCover from './assets/images/png/deafultBackground.jpg'
+
 function App() {
   const [optionSelected, setOptionSelected] = useState(1);
   const [currentMenuOption, setCurrentMenuOption] = useState(undefined);
@@ -77,6 +79,7 @@ function App() {
 
   return (
     <div className="App">
+        <img src={songPlaying?(songPlaying?.photo):defaultCover} className='dynamicBackDrop' alt="backdrop"></img>
       <div className="maincontainer">
         <Menu
           currentMenuOption={currentMenuOption}
@@ -95,7 +98,7 @@ function App() {
           songPlaying={songPlaying}
           setSongPlaying={setSongPlaying}
         />
-        <MusicPlayer currentTrack={currentTrack} songPlaying={songPlaying}/>
+        <MusicPlayer currentTrack={currentTrack} songPlaying={songPlaying} setSongPlaying={setSongPlaying} songList={songList}/>
       </div>
     </div>
   );

@@ -36,9 +36,39 @@ width: 25rem;
 .audio_controller{
 width: 100%;
 height: 5rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
+
 .audio_controller>audio{
     width: 100%;
     height: 100%;
+    display: none;
 }
-
+.audio_controller_menu{
+width: 3rem;
+height: max-content;
+}
+.audio_controller_menu>img{
+    width: 2rem;
+    height: 2rem;
+}
+.audio_controller_actions{
+    width: 7rem;
+    height: max-content;
+    display: flex;
+    gap: 1rem;
+}
+.audio_controller_actions>img{
+    width: 2rem;
+    height: 2rem;
+}
+.audio_controller_volume{
+    width: 3rem;
+    height: max-content;
+}
+.audio_controller_volume>img{
+    width: 2rem;
+    height: 2rem;
+}
